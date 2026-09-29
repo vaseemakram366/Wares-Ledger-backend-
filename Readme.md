@@ -1,134 +1,86 @@
-# Product CRUD REST API
+# Wares Ledger Backend
 
-A simple RESTful API built with **Node.js, Express.js, and CORS** to perform CRUD (Create, Read, Update, Delete) operations on products.
+A simple Node.js + Express backend for managing a product catalog. This API is designed for a frontend app such as a React dashboard or e-commerce UI and supports the main CRUD operations for products.
 
-The project uses an **in-memory JavaScript array** as a temporary database, making it useful for learning and practicing REST API development without requiring a real database.
+## Features
 
-## 🚀 Features
+- Get all products
+- Get a single product by ID
+- Create a new product
+- Update an existing product
+- Delete a product
+- JSON-based request and response handling
+- CORS support for frontend integrations
+- In-memory data storage for quick demos and learning
 
-* RESTful API architecture
-* CRUD operations for products
-* Express.js server
-* JSON request/response handling
-* CORS support for frontend applications
-* Basic request validation
-* Dynamic product IDs
-* HTTP status codes for success and error responses
-* In-memory data storage
+## Tech Stack
 
-## 🛠️ Tech Stack
+- Node.js
+- Express.js
+- JavaScript
+- CORS
 
-* **Node.js**
-* **Express.js**
-* **CORS**
-* **JavaScript**
-* **REST API**
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
-Product-CRUD-API/
-│
-├── app.js
+Wares-Ledger-backend/
+├── server.js
 ├── package.json
-├── package-lock.json
-└── README.md
+├── Readme.md
+└── node_modules/   (after installation)
 ```
 
-## ⚙️ Installation & Setup
+## Installation
 
-### 1. Clone the repository
-
-```bash
-git clone <your-repository-url>
-cd Product-CRUD-API
-```
-
-### 2. Install dependencies
+1. Open the project folder
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-### 3. Start the server
+3. Start the server:
 
 ```bash
-node app.js
+npm start
 ```
 
-The server will start on:
+The server runs on:
 
 ```text
 http://localhost:5000
 ```
 
-To verify the API, open:
+## API Endpoints
 
-```text
-http://localhost:5000/products
-```
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| GET | /products | Get all products |
+| GET | /products/:id | Get a single product by ID |
+| POST | /products | Add a new product |
+| PUT | /products/:id | Update a product |
+| DELETE | /products/:id | Delete a product |
 
-## 🔗 API Endpoints
+## Example Requests
 
-| Method | Endpoint        | Description                |
-| ------ | --------------- | -------------------------- |
-| GET    | `/products`     | Get all products           |
-| GET    | `/products/:id` | Get a single product       |
-| POST   | `/products`     | Create a new product       |
-| PUT    | `/products/:id` | Update an existing product |
-| DELETE | `/products/:id` | Delete a product           |
-
-## 📖 API Usage
-
-### 1. Get All Products
-
-**GET**
+### Get all products
 
 ```http
-GET /products
+GET http://localhost:5000/products
 ```
 
-Example:
-
-```text
-http://localhost:5000/products
-```
-
-Returns the complete list of products.
-
-### 2. Get Product by ID
-
-**GET**
+### Get one product
 
 ```http
-GET /products/:id
+GET http://localhost:5000/products/2
 ```
 
-Example:
-
-```text
-http://localhost:5000/products/2
-```
-
-Returns the product with the specified ID.
-
-If the product does not exist, the API should return:
-
-```json
-{
-  "error": "Product not found"
-}
-```
-
-### 3. Create a Product
-
-**POST**
+### Create a product
 
 ```http
-POST /products
+POST http://localhost:5000/products
+Content-Type: application/json
 ```
-
-Request body:
 
 ```json
 {
@@ -141,37 +93,12 @@ Request body:
 }
 ```
 
-Successful response:
-
-```json
-{
-  "id": 6,
-  "name": "Leather Notebook",
-  "category": "Stationery",
-  "price": 25,
-  "stock": 20,
-  "color": "#654321",
-  "rating": 4
-}
-```
-
-The API automatically generates a unique ID for the new product.
-
-### 4. Update a Product
-
-**PUT**
+### Update a product
 
 ```http
-PUT /products/:id
+PUT http://localhost:5000/products/2
+Content-Type: application/json
 ```
-
-Example:
-
-```text
-http://localhost:5000/products/2
-```
-
-Request body:
 
 ```json
 {
@@ -180,23 +107,21 @@ Request body:
 }
 ```
 
-Only the fields provided in the request are updated.
-
-### 5. Delete a Product
-
-**DELETE**
+### Delete a product
 
 ```http
-DELETE /products/:id
+DELETE http://localhost:5000/products/5
 ```
 
-Example:
+## Notes
 
-```text
-http://localhost:5000/products/5
-```
+- Data is stored in memory, so it resets when the server restarts.
+- This backend is useful for testing frontend integrations before connecting to a real database.
+- The app uses basic validation for required fields like name, category, and price.
 
-A successful deletion returns:
+## License
+
+This project is licensed under the ISC license.
 
 ```text
 HTTP 204 No Content
